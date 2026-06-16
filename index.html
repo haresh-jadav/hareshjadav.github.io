@@ -5,299 +5,442 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Haresh Jadav | Martian Man</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#050814;
-  color:white;
-  overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background:#070b16;
+    color:white;
+    overflow:hidden;
 }
 
 /* Background */
-.bg{
-  position:fixed;
-  inset:0;
-  background:
-  radial-gradient(circle at 80% 30%, rgba(255,100,0,0.45), transparent 18%),
-  radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1), transparent 1%),
-  #050814;
-  z-index:-3;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,.12) 1px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255,255,255,.08) 1px, transparent 1px),
+      linear-gradient(135deg,#050814,#0a1022,#120812);
+    background-size:60px 60px, 90px 90px, cover;
+    z-index:-5;
 }
 
-.stars{
-  position:fixed;
-  inset:0;
-  background-image:
-  radial-gradient(white 1px, transparent 1px);
-  background-size:40px 40px;
-  opacity:.18;
-  z-index:-2;
-}
-
+/* Mars */
 .mars{
-  position:fixed;
-  right:70px;
-  top:110px;
-  width:360px;
-  height:360px;
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, #ff9966, #a72a00);
-  box-shadow:0 0 80px #ff5500;
-  z-index:-1;
+    position:fixed;
+    right:90px;
+    top:80px;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    background:
+    radial-gradient(circle at 30% 30%, #ffb366, #ff5e00 45%, #7a1d00 85%);
+    box-shadow:
+      0 0 50px rgba(255,94,0,.8),
+      0 0 100px rgba(255,94,0,.4);
+    z-index:-2;
+}
+
+/* Orbit Ring */
+.orbit{
+    position:fixed;
+    right:40px;
+    top:30px;
+    width:520px;
+    height:520px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:50%;
+    z-index:-1;
+}
+
+/* Satellite */
+.satellite{
+    position:fixed;
+    right:290px;
+    top:20px;
+    width:44px;
+    height:22px;
+    background:linear-gradient(to right,#cfd8dc,#90a4ae);
+    border-radius:4px;
+    animation: orbitAnim 8s linear infinite;
+}
+
+.satellite::before,
+.satellite::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:8px;
+    background:#455a64;
+    top:7px;
+}
+
+.satellite::before{left:-18px;}
+.satellite::after{right:-18px;}
+
+@keyframes orbitAnim{
+    from{
+        transform:rotate(0deg) translateX(260px) rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg) translateX(260px) rotate(-360deg);
+    }
 }
 
 /* Navbar */
 nav{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  padding:25px;
-  border-bottom:1px solid rgba(255,255,255,.1);
+    position:fixed;
+    width:100%;
+    top:0;
+    padding:22px 40px;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    backdrop-filter:blur(14px);
+    background:rgba(5,8,20,0.45);
+    z-index:999;
 }
 
 nav a{
-  color:white;
-  text-decoration:none;
-  cursor:pointer;
-  font-weight:bold;
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    cursor:pointer;
+    transition:.3s;
 }
 
 nav a:hover{
-  color:#ff6a00;
+    color:#ff6a00;
 }
 
 .page{
-  display:none;
-  height:calc(100vh - 80px);
-  padding:40px 60px;
+    display:none;
+    height:100vh;
+    padding-top:100px;
 }
 
 .active{
-  display:block;
+    display:block;
 }
-
-.hero{
-  display:flex;
-  height:100%;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.left{
-  width:45%;
-}
-
-.small{
-  color:#ff6a00;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-h1{
-  font-size:72px;
-  margin:15px 0;
-}
-
-.orange{
-  color:#ff6a00;
-}
-
-.subtitle{
-  font-size:24px;
-  margin-bottom:20px;
-}
-
-.desc{
-  font-size:22px;
-  line-height:1.7;
-  color:#ddd;
-}
-
-.right{
-  width:45%;
-  display:flex;
-  justify-content:center;
-}
-
-.photo-circle{
-  width:320px;
-  height:320px;
-  border-radius:50%;
-  padding:6px;
-  background:#ff6a00;
-  box-shadow:0 0 50px #ff6a00;
-}
-
-.photo-circle img{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  object-fit:cover;
-}
-</style>
+  </style>
 </head>
 <body>
 
-<div class="bg"></div>
-<div class="stars"></div>
 <div class="mars"></div>
+<div class="orbit"></div>
+<div class="satellite"></div>
 
 <nav>
-<a onclick="showPage('home')">Home</a>
-<a onclick="showPage('about')">About</a>
-<a onclick="showPage('research')">Research</a>
-<a onclick="showPage('publications')">Publications</a>
-<a onclick="showPage('awards')">Awards</a>
-<a onclick="showPage('news')">News</a>
-<a onclick="showPage('software')">Software</a>
-<a onclick="showPage('contact')">Contact</a>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('about')">About</a>
+    <a onclick="showPage('research')">Research</a>
+    <a onclick="showPage('publications')">Publications</a>
+    <a onclick="showPage('awards')">Awards</a>
+    <a onclick="showPage('news')">News</a>
+    <a onclick="showPage('contact')">Contact</a>
 </nav>
-
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="home" class="page active">
-  <div class="hero">
-    <div class="left">
-      <div class="small">EXPLORING MARS. UNDERSTANDING THE UNIVERSE.</div>
-      <h1>Haresh Jadav</h1>
-      <h1 class="orange" style="font-size:52px;">Martian Man</h1>
-      <div class="subtitle">Astrophysic & Planetary Researcher</div>
-      <div class="desc">
-        Dedicated to advancing our understanding of Mars,
-        space materials, and sustainable technologies for the future of humanity.
+  <div class="hero-container">
+
+    <div class="left-panel">
+      <div class="small-title">MARS RESEARCH • ASTROPHYSICS • PLANETARY SCIENCE</div>
+
+      <h1 class="main-name">Haresh<br>Jadav</h1>
+
+      <div class="martian-title">Martian Man</div>
+
+      <p class="hero-text">
+        Astrophysicist and planetary researcher focused on Mars exploration,
+        reduced graphene oxide, hydrogen generation, and future space technologies.
+      </p>
+
+      <div class="buttons">
+        <button class="btn1">Download CV</button>
+        <button class="btn2">Contact Me</button>
       </div>
     </div>
 
-    <div class="right">
-      <div class="photo-circle">
+    <div class="right-panel">
+      <div class="photo-ring">
         <img src="profile.png">
       </div>
+
+      <div class="glow-base"></div>
     </div>
+
   </div>
 </div>
-<!-- ABOUT -->
+/* HOME SECTION */
+.hero-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:85vh;
+    padding:0 80px;
+}
+
+.left-panel{
+    width:48%;
+}
+
+.small-title{
+    color:#ff7a1a;
+    letter-spacing:2px;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.main-name{
+    font-family:'Orbitron',sans-serif;
+    font-size:90px;
+    line-height:1.05;
+}
+
+.martian-title{
+    color:#ff6a00;
+    font-size:46px;
+    font-weight:700;
+    margin:15px 0;
+}
+
+.hero-text{
+    color:#d8d8d8;
+    font-size:21px;
+    line-height:1.8;
+    max-width:700px;
+}
+
+.buttons{
+    margin-top:30px;
+    display:flex;
+    gap:20px;
+}
+
+.btn1,.btn2{
+    padding:16px 30px;
+    border:none;
+    border-radius:40px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn1{
+    background:#ff6a00;
+    color:white;
+    box-shadow:0 0 25px rgba(255,106,0,.6);
+}
+
+.btn2{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.3);
+    color:white;
+}
+
+.btn1:hover,.btn2:hover{
+    transform:translateY(-3px);
+}
+
+.right-panel{
+    position:relative;
+    width:40%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.photo-ring{
+    width:340px;
+    height:340px;
+    padding:8px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ff6a00,#ffb366);
+    box-shadow:0 0 40px rgba(255,106,0,.7);
+    z-index:2;
+}
+
+.photo-ring img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+.glow-base{
+    position:absolute;
+    bottom:-60px;
+    width:280px;
+    height:50px;
+    background:radial-gradient(circle, rgba(255,106,0,.8), transparent 70%);
+    filter:blur(18px);
+}
+  <!-- ABOUT -->
 <div id="about" class="page">
-  <h1 class="orange" style="font-size:48px;">About Me</h1>
-  <br>
-  <div class="desc">
-    I am a physicist and planetary researcher with a strong focus on Mars exploration,
-    hydrogen generation, and advanced functional materials.
-    <br><br>
-    My work combines experimental research and computational modeling to develop
-    solutions for in-situ resource utilization (ISRU) and future space missions.
-    <br><br>
-    • Project Associate (DST) at CHARUSAT University<br>
-    • Specialized in rGO, HER/OER, Supercapacitors & Radiation Shielding<br>
-    • Passionate about Mars, Space Materials & Astrobiology
+  <div class="content-box">
+    <h2>About Me</h2>
+    <p>
+      I am a planetary researcher and astrophysicist working on advanced
+      materials for space exploration. My research focuses on Mars surface
+      applications, hydrogen generation, reduced graphene oxide, and future
+      technologies for interplanetary missions.
+    </p>
   </div>
 </div>
 
 <!-- RESEARCH -->
 <div id="research" class="page">
-  <h1 class="orange" style="font-size:48px;">Research Areas</h1>
-  <br><br>
+  <div class="content-box">
+    <h2>Research Areas</h2>
 
-  <div style="display:flex; gap:20px; flex-wrap:wrap;">
-    <div style="background:#111a2d;padding:25px;border-radius:20px;width:280px;">
-      <h2 style="font-size:28px;">Mars Surface Applications</h2>
-      <p class="desc" style="font-size:18px;">ISRU, regolith studies and Mars mission applications.</p>
-    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Mars Surface Applications</h3>
+        <p>ISRU and material applications for Martian missions.</p>
+      </div>
 
-    <div style="background:#111a2d;padding:25px;border-radius:20px;width:280px;">
-      <h2 style="font-size:28px;">Hydrogen Generation</h2>
-      <p class="desc" style="font-size:18px;">HER/OER catalyst design for future energy systems.</p>
-    </div>
+      <div class="card">
+        <h3>Hydrogen Generation</h3>
+        <p>HER/OER catalyst development for sustainable energy.</p>
+      </div>
 
-    <div style="background:#111a2d;padding:25px;border-radius:20px;width:280px;">
-      <h2 style="font-size:28px;">Reduced Graphene Oxide</h2>
-      <p class="desc" style="font-size:18px;">Synthesis and functional applications of rGO.</p>
-    </div>
+      <div class="card">
+        <h3>Reduced Graphene Oxide</h3>
+        <p>Novel functional materials for space technology.</p>
+      </div>
 
-    <div style="background:#111a2d;padding:25px;border-radius:20px;width:280px;">
-      <h2 style="font-size:28px;">Radiation Shielding</h2>
-      <p class="desc" style="font-size:18px;">Materials for astronaut protection in space.</p>
+      <div class="card">
+        <h3>Radiation Shielding</h3>
+        <p>Advanced shielding materials for astronaut protection.</p>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- PUBLICATIONS -->
 <div id="publications" class="page">
-  <h1 class="orange" style="font-size:48px;">Publications</h1>
-  <br>
+  <div class="content-box">
+    <h2>Publications</h2>
 
-  <div style="background:#111a2d;padding:20px;border-radius:15px;margin-bottom:20px;">
-    Efficient Hydrogen Evolution on rGO/NiFe Catalysts for Mars ISRU Applications
-  </div>
+    <div class="pub-item">
+      Efficient Hydrogen Evolution on rGO-based Catalysts for Mars ISRU
+    </div>
 
-  <div style="background:#111a2d;padding:20px;border-radius:15px;margin-bottom:20px;">
-    Reduced Graphene Oxide Based Supercapacitors with High Energy Density
-  </div>
+    <div class="pub-item">
+      Reduced Graphene Oxide Supercapacitors for Energy Storage
+    </div>
 
-  <div style="background:#111a2d;padding:20px;border-radius:15px;">
-    Radiation Shielding Performance of Polymer/rGO Nanocomposites
+    <div class="pub-item">
+      Radiation Shielding Using Polymer-rGO Nanocomposites
+    </div>
   </div>
 </div>
-<!-- AWARDS -->
+/* CONTENT PAGES */
+.content-box{
+    padding:80px;
+}
+
+.content-box h2{
+    font-size:56px;
+    color:#ff6a00;
+    margin-bottom:30px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.content-box p{
+    font-size:22px;
+    color:#ddd;
+    line-height:1.8;
+    max-width:1000px;
+}
+
+.cards{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:280px;
+    padding:28px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 0 25px rgba(255,106,0,0.08);
+}
+
+.card h3{
+    color:#ff8a33;
+    margin-bottom:14px;
+}
+
+.card p{
+    font-size:16px;
+}
+
+.pub-item{
+    padding:24px;
+    margin-bottom:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    font-size:20px;
+}
+  <!-- AWARDS -->
 <div id="awards" class="page">
-  <h1 class="orange" style="font-size:48px;">Awards</h1>
-  <br>
-  <div class="desc">
-    • Add your awards here<br><br>
-    • Best Research Presentation Award<br><br>
-    • Conference Recognition<br><br>
-    • Fellowship / Grant
+  <div class="content-box">
+    <h2>Awards & Achievements</h2>
+
+    <div class="pub-item">Best Research Presentation Award</div>
+    <div class="pub-item">International Conference Recognition</div>
+    <div class="pub-item">Research Fellowship / Grant</div>
   </div>
 </div>
 
 <!-- NEWS -->
 <div id="news" class="page">
-  <h1 class="orange" style="font-size:48px;">News</h1>
-  <br>
-  <div class="desc">
-    • Paper accepted in international journal<br><br>
-    • Presented research at conference<br><br>
-    • Working on Mars ISRU project
-  </div>
-</div>
+  <div class="content-box">
+    <h2>Latest News</h2>
 
-<!-- SOFTWARE -->
-<div id="software" class="page">
-  <h1 class="orange" style="font-size:48px;">Software</h1>
-  <br>
-  <div class="desc">
-    • Python<br><br>
-    • VESTA<br><br>
-    • Origin<br><br>
-    • MATLAB<br><br>
-    • DFT Tools
+    <div class="pub-item">Presented Mars research at international conference</div>
+    <div class="pub-item">Working on Hydrogen Generation project</div>
+    <div class="pub-item">Paper submitted to SCI journal</div>
   </div>
 </div>
 
 <!-- CONTACT -->
 <div id="contact" class="page">
-  <h1 class="orange" style="font-size:48px;">Contact</h1>
-  <br>
-  <div class="desc">
-    Email: hareshjadav.physics@gmail.com<br><br>
-    Google Scholar: Add link<br><br>
-    ORCID: Add link<br><br>
-    GitHub: haresh-jadav
+  <div class="content-box">
+    <h2>Contact</h2>
+
+    <p>Email: hareshjadav.physics@gmail.com</p>
+    <br>
+    <p>Google Scholar: Add your link</p>
+    <br>
+    <p>ORCID: Add your link</p>
+    <br>
+    <p>GitHub: haresh-jadav</p>
   </div>
 </div>
-
 <script>
 function showPage(pageId){
-  const pages = document.querySelectorAll('.page');
-  pages.forEach(page => {
-    page.classList.remove('active');
-  });
+    const pages=document.querySelectorAll('.page');
 
-  document.getElementById(pageId).classList.add('active');
+    pages.forEach(page=>{
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageId).classList.add('active');
 }
 </script>
 
